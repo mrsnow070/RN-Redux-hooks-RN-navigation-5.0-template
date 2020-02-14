@@ -7,14 +7,21 @@ import {getCount} from '../redux/reducer/testReducer';
 import {addToCount, subFromCount} from '../redux/actions/testActions';
 import styles from '../styles/testStyles';
 
-const Test = () => {
+const Test = ({navigation}) => {
   const dispatch = useDispatch();
   const count = useSelector(state => getCount(state));
 
-  // console.log(typeof subFromCount);
-  console.log(addToCount);
+  console.log(navigation);
+
   return (
     <View style={styles.test}>
+      <Button title="Drawer On" onPress={() => navigation.openDrawer()} />
+      <Button
+        title="to counter"
+        onPress={() =>
+          navigation.navigate('Counter', {title: 'wow its params ;D'})
+        }
+      />
       <Text>{count}</Text>
       <Button title="INC" onPress={() => dispatch(addToCount())} />
       <Button title="DEC" onPress={() => dispatch(subFromCount())} />
